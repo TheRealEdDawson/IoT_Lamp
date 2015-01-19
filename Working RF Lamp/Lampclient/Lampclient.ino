@@ -66,7 +66,7 @@ void loop() {
          digitalWrite(2, LOW);
       }
    }
-  delay(1000);  
+  delay(50);  
 
 } // Loop
 
