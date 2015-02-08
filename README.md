@@ -19,13 +19,14 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 
-Instead of sudo apt-get updrade, you can run the following command:
+Instead of sudo apt-get upgrade, you can run the following command:
 
 ```
 sudo apt-get dist-upgrade
 ```
 
 This intelligently upgrades your distribution to include dependencies.
+
 Instructions to install and build the RF24 Library are taken from [this repository](https://github.com/TMRh20/RF24)
 At the command prompt of your RPi, run the following command:
 ```
