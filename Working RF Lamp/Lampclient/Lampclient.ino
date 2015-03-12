@@ -24,18 +24,20 @@ const uint64_t addresses[2] = {0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL};
 
 void setup() {
   Serial.begin(57600);
-  
+  printf_begin();
   radio.begin();
 
   // Set the PA Level low to prevent power supply related issues since this is a
  // getting_started sketch, and the likelihood of close proximity of the devices. RF24_PA_MAX is default.
   radio.setPALevel(RF24_PA_LOW);
   
+  
   // Open a writing and reading pipe to recieve from the RPi
     radio.openWritingPipe(addresses[0]);
     radio.openReadingPipe(1,addresses[1]);
 
-  
+  while (!Serial);
+  Serial.println(F("Test output"));
   // Start the radio listening for data
   radio.startListening();
   radio.printDetails();
@@ -57,16 +59,21 @@ void loop() {
         radio.read( &command, sizeof(command) );             // Get the payload
     }
      
-      if (command == 1) {
-        digitalWrite(13, HIGH);
-         digitalWrite(2, HIGH);
-      }
-      if (command == 0) {
-        digitalWrite(13, LOW);
-         digitalWrite(2, LOW);
-      }
+     analogWrite(3, command);
+     Serial.println(command);
+     
+     
+//      if (command == 1) {
+//        Serial.println("Turn on");
+//        digitalWrite(13, HIGH);
+//         digitalWrite(2, HIGH);
+//      }
+//      if (command == 0) {
+//        Serial.println("Turn off");
+//        digitalWrite(13, LOW);
+//         digitalWrite(2, LOW);
+//      }
    }
   delay(50);  
 
 } // Loop
-
